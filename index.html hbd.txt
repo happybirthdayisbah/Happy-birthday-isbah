@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday, Isbah! 🎂❤️</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (free CDN for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p1CmKqj8s1q0n7l2F3qkzV4kQ0TzC0i1J8kFz7u2QmG2l9Oq4Qe0mYF+4n8p1Qxg0qZ5m9v7k1aKzY7+6k9cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <meta name="theme-color" content="#ffd6e9">
+
+  <style>
+    /* =====================================================
+       Cute Romantic Birthday Page (single-file)
+       Mobile-first, pastel palette, glassmorphism, soft animations.
+       ===================================================== */
+
+    :root{
+      --bg-1: #fff7fb;
+      --bg-2: #f8f2ff;
+      --pink: #ffbad6;
+      --rose: #ff7fb0;
+      --lavender: #e9d9ff;
+      --card: rgba(255,255,255,0.7);
+      --glass-border: rgba(255,255,255,0.6);
+      --accent: #ff6ea3;
+      --muted: #5c4a5a;
+      --shadow: rgba(102,51,102,0.08);
+      --max-width: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* Page container */
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:18px;
+    }
+
+    /* Loading overlay */
+    #loader{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.86));
+      z-index:9999;
+      transition:opacity .45s ease, visibility .45s;
+    }
+    #loader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+
+    .loader-inner{
+      text-align:center;
+      padding:22px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,245,255,0.94));
+      border:1px solid rgba(255,200,220,0.6);
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+    .loader-heart{
+      font-size:28px;
+      animation:beat 1.2s infinite;
+      display:inline-block;
+      margin-bottom:8px;
+    }
+    @keyframes beat{
+      0%,100%{ transform:scale(1); }
+      50%{ transform:scale(1.18); }
+    }
+
+    /* Hero */
+    header.hero{
+      min-height:78vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      padding:18px 6px 36px;
+    }
+
+    .hero-card{
+      width:100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.72));
+      border-radius:18px;
+      padding:20px;
+      border:1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(111,66,99,0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      max-width:980px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(24px,6vw,44px);
+      margin:6px 0 8px;
+      color:#3b2433;
+      line-height:1.02;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .title .emoji{
+      font-size:0.9em;
+      transform-origin:center;
+      animation:floaty 3s ease-in-out infinite;
+    }
+    @keyframes floaty{
+      0%{ transform:translateY(0); }
+      50%{ transform:translateY(-8px); }
+      100%{ transform:translateY(0); }
+    }
+
+    .subtitle{
+      color:#624855;
+      font-size:clamp(13px,3.2vw,18px);
+      margin:10px 6px 14px;
+      opacity:0.95;
+    }
+
+    /* Countdown */
+    .countdown{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .cd-pill{
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,245,255,0.86));
+      border-radius:12px;
+      padding:10px 12px;
+      min-width:78px;
+      text-align:center;
+      border:1px solid rgba(255,200,220,0.5);
+      box-shadow: 0 6px 18px rgba(111,66,99,0.05);
+    }
+    .cd-num{ font-weight:700; font-size:1.15rem; color:#3b2433; }
+    .cd-label{ font-size:0.75rem; color:#6b4b60; margin-top:4px; }
+
+    /* Controls row */
+    .controls{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(90deg,var(--pink),var(--rose));
+      color:white;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      box-shadow: 0 8px 20px rgba(255,120,160,0.12);
+      transition:transform .14s ease, opacity .12s ease;
+      text-decoration:none;
+    }
+    .btn.ghost{
+      background:transparent;
+      border:1px solid rgba(150,110,130,0.08);
+      color:var(--muted);
+      box-shadow:none;
+    }
+    .btn:active{ transform:translateY(1px); }
+
+    /* Sections */
+    section{
+      margin:26px 0;
+    }
+    h2.section-title{
+      font-family:'Playfair Display',serif;
+      color:#3d2330;
+      font-size:20px;
+      margin:6px 0 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    /* Gallery */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    @media(min-width:720px){
+      .gallery-grid{ grid-template-columns:repeat(5,1fr); }
+    }
+    .gallery-item{
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(250,245,255,0.84));
+      border-radius:12px;
+      border:1px solid rgba(255,200,220,0.5);
+      padding:8px;
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+    }
+    .gallery-item img{
+      width:100%;
+      height:110px;
+      object-fit:cover;
+      border-radius:8px;
+      display:block;
+    }
+
+    /* Timeline (vertical) */
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .tl-event{
+      background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,245,255,0.88));
+      border-radius:12px;
+      padding:12px;
+      border:1px solid rgba(230,200,220,0.5);
+      box-shadow: 0 6px 18px rgba(111,66,99,0.04);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .tl-dot{
+      width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:6px;flex:0 0 auto;
+      box-shadow: 0 4px 12px rgba(255,110,150,0.12);
+    }
+    .tl-body{ flex:1; }
+    .tl-date{ font-size:12px;color:#7a566a;margin-bottom:6px;font-weight:600; }
+
+    /* Reasons cards */
+    .reasons-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    @media(min-width:720px){
+      .reasons-grid{ grid-template-columns:repeat(4,1fr); }
+    }
+    .reason-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,255,0.9));
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(230,200,220,0.5);
+      text-align:center;
+      box-shadow: 0 8px 22px rgba(111,66,99,0.04);
+      transform-origin:center;
+      transition:transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .18s;
+    }
+    .reason-card:hover{ transform:translateY(-6px) scale(1.02); box-shadow: 0 14px 34px rgba(111,66,99,0.08); }
+    .reason-emoji{ font-size:22px; display:block; margin-bottom:8px; }
+
+    /* Future together */
+    .future-list{ display:flex; flex-direction:column; gap:10px; }
+    .future-item{ background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,250,255,0.9)); padding:12px; border-radius:12px; border:1px solid rgba(230,200,220,0.5); }
+
+    /* Footer */
+    footer{
+      text-align:center;
+      padding:22px 8px 48px;
+      color:#5a3e4e;
+      font-size:14px;
+      opacity:0.95;
+    }
+
+    /* Modal (lightbox & letter) */
+    .modal-backdrop{
+      position:fixed; inset:0; background:rgba(20,10,20,0.18); display:flex; align-items:center; justify-content:center; z-index:9998;
+      visibility:hidden; opacity:0; transition:opacity .18s ease, visibility .18s;
+    }
+    .modal-backdrop.show{ visibility:visible; opacity:1; }
+    .modal{
+      width:calc(100% - 40px);
+      max-width:720px;
+      background:linear-gradient(180deg, #fff, #fff7fb);
+      border-radius:14px;
+      padding:18px;
+      border:1px solid rgba(230,200,220,0.6);
+      box-shadow: 0 18px 50px rgba(111,66,99,0.12);
+      transform:translateY(10px);
+      transition:transform .22s ease;
+    }
+    .modal.show{ transform:translateY(0); }
+
+    .modal .close-btn{ position:absolute; right:14px; top:12px; background:transparent; border:none; font-size:18px; color:#7a566a; cursor:pointer; }
+
+    /* Floating decorative elements container (absolute) */
+    .floater-layer{ position:fixed; inset:0; pointer-events:none; z-index:2; overflow:visible; }
+
+    /* float elements */
+    .float{
+      position:absolute;
+      will-change:transform, opacity;
+      pointer-events:none;
+      opacity:0;
+      transform:translateY(0) scale(1);
+    }
+    .float.heart{ color:var(--pink); text-shadow: 0 4px 8px rgba(255,110,150,0.12); }
+    .float.star{ color:#ffd5e6; }
+    .float.butterfly{ color:#caa7ff; }
+
+    /* floats animation (applies when JS adds class 'rise') */
+    @keyframes riseUp{
+      0%{ transform:translateY(0) scale(.7); opacity:0; }
+      10%{ opacity:1; }
+      100%{ transform:translateY(-110vh) scale(1.08); opacity:0; }
+    }
+    .rise{ animation: riseUp var(--dur) linear forwards; }
+
+    /* small helpers */
+    .muted{ color:#7a566a; font-size:13px; }
+    .center{ text-align:center; }
+
+    /* Lightbox image modal content */
+    .lightbox-img{ width:100%; height:auto; border-radius:10px; display:block; }
+
+    /* Responsive spacing for larger screens */
+    @media(min-width:920px){
+      .hero-card{ padding:28px; }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="loader-inner" aria-hidden="false">
+      <div class="loader-heart">💗</div>
+      <div style="font-weight:700; color:#6b4860;">Preparing a special celebration…</div>
+      <div class="muted" style="margin-top:8px;">This beautiful page is for Isbah — just a moment 💕</div>
+    </div>
+  </div>
+
+  <!-- Decorative floating elements container -->
+  <div class="floater-layer" aria-hidden="true"></div>
+
+  <main class="container" id="main">
+    <!-- HERO -->
+    <header class="hero" id="hero">
+      <div class="hero-card" role="banner" aria-label="Birthday hero">
+        <div class="title" id="main-title">
+          <span>Happy Birthday, <span id="person-name">Isbah</span>!</span>
+          <span class="emoji" aria-hidden="true">🎂❤️</span>
+        </div>
+        <p class="subtitle" id="subtitle">
+          To the most beautiful girl in my life, thank you for making every day brighter. I hope your birthday is as special and wonderful as you are.
+        </p>
+
+        <!-- Countdown -->
+        <div class="countdown" aria-live="polite" aria-atomic="true">
+          <div class="cd-pill" id="countdown-days">
+            <div class="cd-num" id="cd-days">--</div>
+            <div class="cd-label">Days</div>
+          </div>
+          <div class="cd-pill" id="countdown-hours">
+            <div class="cd-num" id="cd-hours">--</div>
+            <div class="cd-label">Hours</div>
+          </div>
+          <div class="cd-pill" id="countdown-mins">
+            <div class="cd-num" id="cd-mins">--</div>
+            <div class="cd-label">Minutes</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <button class="btn" id="audio-toggle" aria-pressed="false" title="Play or pause music">
+            <i class="fa-solid fa-play" id="audio-icon" aria-hidden="true"></i>
+            <span id="audio-label">Play music</span>
+          </button>
+
+          <button class="btn ghost" id="surprise-btn" title="Open a surprise">
+            <i class="fa-regular fa-heart" aria-hidden="true"></i> Surprise
+          </button>
+
+          <a class="btn ghost" href="#gallery" title="See photos">
+            <i class="fa-regular fa-image" aria-hidden="true"></i> Photos
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Photo Gallery -->
+    <section id="gallery" aria-labelledby="gallery-title">
+      <h2 class="section-title" id="gallery-title">Photo Gallery</h2>
+      <p class="muted">Tap any photo to view larger. Replace placeholders easily in the script section.</p>
+      <div class="gallery-grid" id="gallery-grid" role="list"></div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline" aria-labelledby="timeline-title">
+      <h2 class="section-title" id="timeline-title">Our Beautiful Memories</h2>
+      <p class="muted">A timeline of some lovely moments — replace or add events in the script.</p>
+      <div class="timeline" id="timeline-list"></div>
+    </section>
+
+    <!-- Reasons -->
+    <section id="reasons" aria-labelledby="reasons-title">
+      <h2 class="section-title" id="reasons-title">Reasons I Love You ❤️</h2>
+      <div class="reasons-grid" id="reasons-grid"></div>
+    </section>
+
+    <!-- Future Together -->
+    <section id="future" aria-labelledby="future-title">
+      <h2 class="section-title" id="future-title">A Future Together</h2>
+      <div class="future-list" id="future-list"></div>
+    </section>
+
+    <!-- Final heartfelt message -->
+    <section id="final" aria-labelledby="final-title">
+      <h2 class="section-title" id="final-title">A Final Message</h2>
+      <p class="muted center" style="font-size:16px; line-height:1.45;">
+        No matter where life takes us, you'll always have a special place in my heart.
+        <strong>Happy Birthday, <span id="person-name-2">Isbah</span>. I love you forever. ❤️</strong>
+      </p>
+    </section>
+
+    <footer>
+      Made with endless love ❤️
+    </footer>
+  </main>
+
+  <!-- Lightbox / Image Modal -->
+  <div class="modal-backdrop" id="lightbox" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Photo">
+      <button class="close-btn" id="lb-close" aria-label="Close photo">&times;</button>
+      <img src="" alt="Photo" id="lightbox-img" class="lightbox-img" />
+    </div>
+  </div>
+
+  <!-- Love letter modal -->
+  <div class="modal-backdrop" id="letter-modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Love letter">
+      <button class="close-btn" id="letter-close" aria-label="Close letter">&times;</button>
+      <div style="padding-right:6px;">
+        <h3 style="margin-top:0; font-family:'Playfair Display',serif;">A Love Letter for <span id="letter-name">Isbah</span> 💌</h3>
+        <p id="love-letter" style="white-space:pre-wrap; color:#5b3f4f; line-height:1.6;">
+          <!-- Filled by JS -->
+        </p>
+
+        <div style="margin-top:14px; display:flex; gap:10px; justify-content:flex-end;">
+          <button class="btn ghost" id="letter-close-2">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden audio element (no autoplay) -->
+  <audio id="bg-audio" loop preload="none">
+    <!-- Replace "music.mp3" with your file in the same folder or use a valid URL -->
+    <source src="music.mp3" type="audio/mpeg">
+    <!-- If no file provided, player remains silent -->
+  </audio>
+
+  <!-- Canvas for confetti (covers viewport) -->
+  <canvas id="confetti-canvas" style="position:fixed; inset:0; pointer-events:none; z-index:10000;"></canvas>
+
+  <script>
+    /* ======================================================
+       Page script: all configuration and behavior are below.
+       Change the placeholders in the CONFIG section only.
+       ====================================================== */
+
+    // ---------- CONFIG: personalize these values ----------
+    const CONFIG = {
+      name: "Isbah",                          // change the displayed name
+      // birthday: set month and day here. For a specific year (e.g., 2026-07-30),
+      // you can include a year like "2026-07-30". If you want next occurrence logic,
+      // just set month/day in "MM-DD" and script will pick next year.
+      birthday: "MM-DD",                      // Example: "07-30" or "2026-07-30"
+      // Soft background music file - place a file called "music.mp3" next to this page,
+      // or replace with a path/URL. Must not autoplay due to requirement.
+      musicSrc: "music.mp3",
+      // Short love letter template (you can edit multiline text)
+      loveLetter: `My dearest Isbah,
+
+Happy birthday to the most beautiful soul I know. You light up my life with your smile, your kindness, and the way you make the ordinary feel magical. Today I celebrate you — every laugh, every dream, every gentle moment we share.
+
+I love you, now and forever.
+
+Always yours,
+[Your Name]`,
+      // Gallery placeholders - leave as empty array to use generated inline placeholders.
+      // If you want to use your own images, replace these with strings pointing to image files:
+      // e.g. ["photos/1.jpg", "photos/2.jpg", ...]
+      photos: [],
+
+      // Timeline placeholder events (date string and text)
+      timeline: [
+        { date: "Our First Meet", text: "The day our paths crossed and everything changed." },
+        { date: "First Date", text: "That cozy evening when we laughed until late." },
+        { date: "A Trip Together", text: "Exploring new places, hand in hand." }
+      ],
+
+      // Reasons I love you (short list)
+      reasons: [
+        "Your beautiful smile",
+        "The warmth of your heart",
+        "How you support my dreams",
+        "Your laughter that fills my days",
+        "The little things you do",
+        "Your endless kindness",
+        "How you make me better",
+        "Your magical presence"
+      ],
+
+      // Future together wishes
+      future: [
+        "Travel the world with you ✈️",
+        "Build a cozy home together 🏡",
+        "Celebrate countless birthdays 🎉",
+        "Grow, learn and laugh together every day 🌱"
+      ]
+    };
+
+    // ---------- End CONFIG ----------
+
+    // Helper: create an inline SVG placeholder as a data URL (self-contained)
+    function makePlaceholderSVG(text, w = 800, h = 600, bg = "#fff1f6", fg = "#7a4c5d") {
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' viewBox='0 0 ${w} ${h}'>
+        <defs>
+          <linearGradient id='g' x1='0' x2='1'>
+            <stop offset='0' stop-color='${bg}' />
+            <stop offset='1' stop-color='#fff' stop-opacity='0.6' />
+          </linearGradient>
+        </defs>
+        <rect width='100%' height='100%' fill='url(#g)' rx='18' ry='18'/>
+        <g transform='translate(40,40)'>
+          <rect x='0' y='0' width='360' height='240' rx='10' fill='#ffeaf3' opacity='0.95'/>
+        </g>
+        <text x='50%' y='65%' text-anchor='middle' font-family='Inter, Arial' font-weight='600' font-size='36' fill='${fg}'>${escapeHtml(text)}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    // Basic escaping for placeholder labels
+    function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    // Populate initial text content
+    document.getElementById('person-name').textContent = CONFIG.name;
+    document.getElementById('person-name-2').textContent = CONFIG.name;
+    document.getElementById('letter-name').textContent = CONFIG.name;
+    document.getElementById('subtitle').textContent = `To the most beautiful girl in my life, thank you for making every day brighter. I hope your birthday is as special and wonderful as you are.`;
+    document.getElementById('love-letter').textContent = CONFIG.loveLetter;
+
+    // Setup audio
+    const audio = document.getElementById('bg-audio');
+    const audioToggle = document.getElementById('audio-toggle');
+    const audioIcon = document.getElementById('audio-icon');
+    const audioLabel = document.getElementById('audio-label');
+    if (CONFIG.musicSrc && CONFIG.musicSrc.trim()) {
+      audio.querySelector('source').src = CONFIG.musicSrc;
+      audio.load();
+    } else {
+      // No music provided: disable button gracefully
+      audioToggle.disabled = true;
+      audioToggle.style.opacity = '0.6';
+      audioLabel.textContent = 'Add music.mp3 to enable';
+    }
+
+    let isPlaying = false;
+    audioToggle.addEventListener('click', () => {
+      if (!audio.getAttribute('src') && audio.querySelector('source').src.indexOf('music.mp3') === -1 && !CONFIG.musicSrc) {
+        // fallback: no music configured
+        return;
+      }
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        // play - do not autoplay earlier; this click is user interaction so allowed
+        audio.play().catch(() => {});
+      }
+    });
+    audio.addEventListener('play', () => {
+      isPlaying = true;
+      audioToggle.setAttribute('aria-pressed','true');
+      audioIcon.className = 'fa-solid fa-pause';
+      audioLabel.textContent = 'Pause music';
+    });
+    audio.addEventListener('pause', () => {
+      isPlaying = false;
+      audioToggle.setAttribute('aria-pressed','false');
+      audioIcon.className = 'fa-solid fa-play';
+      audioLabel.textContent = 'Play music';
+    });
+
+    // Countdown logic
+    const cdDays = document.getElementById('cd-days');
+    const cdHours = document.getElementById('cd-hours');
+    const cdMins = document.getElementById('cd-mins');
+
+    function parseBirthday(bday) {
+      // Accept "MM-DD" or "YYYY-MM-DD"
+      if (!bday || bday.trim() === "" || bday === "MM-DD") return null;
+      if (/^\d{2}-\d{2}$/.test(bday)) {
+        const [MM,DD] = bday.split('-');
+        const now = new Date();
+        let year = now.getFullYear();
+        let target = new Date(`${year}-${MM}-${DD}T00:00:00`);
+        // If already passed this year, pick next year
+        if (target < now) target = new Date(`${year+1}-${MM}-${DD}T00:00:00`);
+        return target;
+      } else if (/^\d{4}-\d{2}-\d{2}$/.test(bday)) {
+        return new Date(bday + 'T00:00:00');
+      }
+      return null;
+    }
+
+    function updateCountdown() {
+      const target = parseBirthday(CONFIG.birthday);
+      if (!target) {
+        cdDays.textContent = '--';
+        cdHours.textContent = '--';
+        cdMins.textContent = '--';
+        return;
+      }
+      const now = new Date();
+      const diffMs = target - now;
+      if (diffMs <= 0) {
+        // Birthday is today (or passed midnight): show message
+        // Replace countdown with "Happy Birthday!"
+        cdDays.textContent = '🎉';
+        cdHours.textContent = '🎉';
+        cdMins.textContent = '🎉';
+        // Optionally trigger a gentle celebration
+        triggerConfetti(80);
+        return;
+      }
+      const diffMins = Math.floor(diffMs / 60000);
+      const days = Math.floor(diffMins / (60*24));
+      const hours = Math.floor((diffMins - days*24*60) / 60);
+      const mins = diffMins % 60;
+      cdDays.textContent = days;
+      cdHours.textContent = hours;
+      cdMins.textContent = mins;
+    }
+
+    // Update every 10 seconds (days/hours/mins enough)
+    updateCountdown();
+    setInterval(updateCountdown, 10000);
+
+    // Populate Gallery (10 placeholders by default)
+    const galleryGrid = document.getElementById('gallery-grid');
+    const photoSources = (CONFIG.photos && CONFIG.photos.length > 0) ? CONFIG.photos : Array.from({length:10}, (_,i)=> makePlaceholderSVG(`Photo ${i+1}`));
+    photoSources.slice(0,10).forEach((src, idx) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.setAttribute('role','listitem');
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `Photo ${idx+1}`;
+      img.loading = 'lazy';
+      item.appendChild(img);
+      item.addEventListener('click', ()=> openLightbox(src, `Photo ${idx+1}`));
+      galleryGrid.appendChild(item);
+    });
+
+    // Lightbox functions
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lbClose = document.getElementById('lb-close');
+    function openLightbox(src, altText) {
+      lightboxImg.src = src;
+      lightboxImg.alt = altText || 'Photo';
+      lightbox.classList.add('show');
+      lightbox.classList.add('visible');
+      lightbox.setAttribute('aria-hidden','false');
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden','true');
+      setTimeout(()=>{ lightbox.classList.remove('visible'); lightboxImg.src = ''; }, 200);
+    }
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e)=> { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e=> { if (e.key === 'Escape') closeLightbox(); });
+
+    // Populate timeline
+    const timelineList = document.getElementById('timeline-list');
+    (CONFIG.timeline || []).forEach(ev => {
+      const node = document.createElement('div');
+      node.className = 'tl-event';
+      node.innerHTML = `<div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-body">
+          <div class="tl-date">${escapeHtml(ev.date)}</div>
+          <div class="tl-text">${escapeHtml(ev.text)}</div>
+        </div>`;
+      timelineList.appendChild(node);
+    });
+
+    // Populate reasons
+    const reasonsGrid = document.getElementById('reasons-grid');
+    (CONFIG.reasons || []).forEach((r, i) => {
+      const card = document.createElement('div');
+      card.className = 'reason-card';
+      const emojis = ['💖','🌟','🌸','😊','✨','💫','🌈','🥰'];
+      const emoji = emojis[i % emojis.length] || '💗';
+      card.innerHTML = `<div class="reason-emoji">${emoji}</div><div class="reason-text">${escapeHtml(r)}</div>`;
+      reasonsGrid.appendChild(card);
+    });
+
+    // Populate future list
+    const futureList = document.getElementById('future-list');
+    (CONFIG.future || []).forEach(f => {
+      const item = document.createElement('div');
+      item.className = 'future-item';
+      item.textContent = f;
+      futureList.appendChild(item);
+    });
+
+    // Surprise / Love letter modal
+    const surpriseBtn = document.getElementById('surprise-btn');
+    const letterModal = document.getElementById('letter-modal');
+    const letterClose = document.getElementById('letter-close');
+    const letterClose2 = document.getElementById('letter-close-2');
+
+    function openLetter(){
+      letterModal.classList.add('show');
+      letterModal.classList.add('visible');
+      letterModal.setAttribute('aria-hidden','false');
+      triggerConfetti(160);
+      // Optionally play a soft chime (if a small audio exists) - re-use bg audio if available and not playing
+      // but do not force background music to play; we leave it to the user.
+    }
+    function closeLetter(){
+      letterModal.classList.remove('show');
+      letterModal.setAttribute('aria-hidden','true');
+      setTimeout(()=>{ letterModal.classList.remove('visible'); }, 200);
+    }
+    surpriseBtn.addEventListener('click', openLetter);
+    letterClose.addEventListener('click', closeLetter);
+    letterClose2.addEventListener('click', closeLetter);
+    letterModal.addEventListener('click', (e)=> { if (e.target === letterModal) closeLetter(); });
+
+    // Floating elements spawn (hearts, stars, butterflies)
+    const floaterLayer = document.querySelector('.floater-layer');
+    const floatTypes = ['heart','star','butterfly'];
+    function spawnFloat(){
+      const el = document.createElement('div');
+      const type = floatTypes[Math.floor(Math.random()*floatTypes.length)];
+      el.className = `float ${type}`;
+      el.style.left = Math.random()*100 + '
